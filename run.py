@@ -27,8 +27,8 @@ Keep in mind that this program is specifically desgined for Allen's GST Page and
 """
 
 website_url = "https://www.allen.ac.in/appsmvc2021/GST/Login"
-autoinstall_driver = True
-magick_path = r'C:\Program Files\ImageMagick-7.0.10-Q16-HDRI'
+autoinstall_driver = True   # Do not change this unless you know what you're doing.
+magick_path = r'C:\Program Files\ImageMagick-7.0.10-Q16-HDRI'   # Change this to your own directory.
 chrome_headless = True
 use_proxy = True
 http_proxy = "157.65.25.144:3128"

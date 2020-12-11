@@ -1,0 +1,6 @@
+selenium
+PIL
+pytesseract
+chromedriver-autoinstaller
+logging
+pillow
