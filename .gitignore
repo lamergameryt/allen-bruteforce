@@ -1,0 +1,7 @@
+87/
+Captchas/
+pytesseract/
+*.png
+*.log
+*.ico
+captcha_grabber.py
