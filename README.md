@@ -12,7 +12,7 @@ To download this program, click the `Code` button beside `Add File` and select `
 After downloading the zip file, you can extract it to your preferred location.
 
 ## Requirements
-The program requires some dependencies to work. The project requires the following external dependencies to work which are not in the `requirements.txt`:
+The program requires some dependencies to work. It requires the following external dependencies to work which are not in the `requirements.txt`:
 * Tesseract (Recommended version is v5.0.0-alpha.20201127)
 * ImageMagick (Recommended version is 7.0.10)
 * Custom Tesseract traineddata (Included in the repository)
@@ -33,7 +33,7 @@ Below you can find what each variable corresponds to:
 * `website_url`: The website which you want to bruteforce. (It only works for Allen's website)
 * `autoinstall_driver`: Automatically install the Chrome Driver required for Selenium. **Do not modify** unless you know what you're doing.
 * `magick_path`: The directory where you installed ImageMagick.
-* `chrome_headless`: Open Google Chrome in GUI more or not. `True` means no GUI.
+* `chrome_headless`: Open Google Chrome in GUI mode or not. `True` means no GUI.
 * `use_proxy`: If a proxy should be used to make the requests.
 * `http_proxy`: Specify the proxy to use. Please make sure the proxy is a valid one before using else you'll get a bunch of error messages.
 * `logs`: Choose to display logs to the terminal.
