@@ -26,7 +26,7 @@ Edit this configuration to your liking.
 Keep in mind that this program is specifically desgined for Allen's GST Page and it won't work for any other website. 
 """
 
-website_url = "https://www.allen.ac.in/appsmvc2021/GST/Login"
+website_url = ""
 autoinstall_driver = True   # Do not change this unless you know what you're doing.
 magick_path = r'C:\Program Files\ImageMagick-7.0.10-Q16-HDRI'   # Change this to your own directory.
 chrome_headless = True
