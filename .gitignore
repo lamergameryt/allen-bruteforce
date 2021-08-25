@@ -5,3 +5,6 @@ pytesseract/
 *.log
 *.ico
 captcha_grabber.py
+venv/
+.idea/
+*.iml

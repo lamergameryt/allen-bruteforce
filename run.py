@@ -10,9 +10,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from PIL import Image
-import sys
-import time
-import subprocess
 import pytesseract
 import logging
 import os
@@ -23,18 +20,18 @@ from selenium.webdriver.common.proxy import Proxy, ProxyType
 """
 CONFIGURATION ->
 Edit this configuration to your liking. 
-Keep in mind that this program is specifically desgined for Allen's GST Page and it won't work for any other website. 
+Keep in mind that this program is specifically designed for Allen's GST Page and it won't work for any other website. 
 """
 
 website_url = ""
-autoinstall_driver = True   # Do not change this unless you know what you're doing.
-magick_path = r'C:\Program Files\ImageMagick-7.0.10-Q16-HDRI'   # Change this to your own directory.
+autoinstall_driver = True  # Do not change this unless you know what you're doing.
+magick_path = r'C:\Program Files\ImageMagick-7.0.10-Q16-HDRI'  # Change this to your own directory.
 chrome_headless = True
 use_proxy = True
 http_proxy = "157.65.25.144:3128"
 logs = True
 
-start_year = 2004   # If this is something other than 2004 then please change the month_days accordingly.
+start_year = 2004  # If this is something other than 2004 then please change the month_days accordingly.
 start_day = 1
 
 """
@@ -46,10 +43,10 @@ if autoinstall_driver:
     chromedriver_autoinstaller.install(cwd=True)
 
 os.environ['PATH'] += os.path.pathsep + magick_path
-LOGGER.setLevel(logging.WARNING)   # Remove unncesessary logs from the console.
+LOGGER.setLevel(logging.WARNING)  # Remove unncesessary logs from the console.
 
 chrome_options = Options()
-chrome_options.add_argument('log-level=3')   # Remove unnecessary logs from the console.
+chrome_options.add_argument('log-level=3')  # Remove unnecessary logs from the console.
 if chrome_headless:
     chrome_options.headless = True
 
@@ -67,7 +64,7 @@ Create the selenium driver and configure it according to the configuration files
 """
 
 driver = webdriver.Chrome(options=chrome_options, desired_capabilities=capabilities)
-driver.get(website_url)   # Open the website specified in website_url
+driver.get(website_url)  # Open the website specified in website_url
 
 """
 STUDENT_INFORMATION ->
@@ -91,7 +88,7 @@ BRUTEFORCE ->
 Bruteforce the website to check every day between month and month_limit.
 """
 while True:
-    if month == month_limit and start_day == month_days[month_limit - 1]:   # Iterated through the specified range.
+    if month == month_limit and start_day == month_days[month_limit - 1]:  # Iterated through the specified range.
         print("The student wasn't born in the limited range.")
         break
 
@@ -124,6 +121,7 @@ while True:
     if chrome_headless:
         img = img.crop((54, 517, 201, 576))
     else:
+        # lgtm [py/unreachable-statement]
         img = img.crop((61, 517, 208, 575))
 
     img.save("cropped.png")
@@ -133,11 +131,11 @@ while True:
     os.system("magick convert cropped.png -colorspace gray -separate -average -threshold 90% -negate -morphology "
               "Thinning Ridges cropped.png")
     captcha_text = pytesseract.image_to_string(
-            Image.open("cropped.png"),
-            config="-l allen_captcha -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        ).replace(" ", "").rstrip()
+        Image.open("cropped.png"),
+        config="-l allen_captcha -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    ).replace(" ", "").rstrip()
 
-    if len(captcha_text) != 6:   # Tesseract failed to read the captcha correctly, hence skip it.
+    if len(captcha_text) != 6:  # Tesseract failed to read the captcha correctly, hence skip it.
         driver.get(website_url)
         page_error = True
         continue
@@ -178,7 +176,7 @@ while True:
             if logs:
                 print('Try =', tries, " with the captcha being", captcha_text)
             tries += 1
-        except Exception as exep:
+        except Exception as e:
             pass
 
 driver.close()
