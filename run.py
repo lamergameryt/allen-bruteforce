@@ -121,8 +121,7 @@ while True:
     if chrome_headless:
         img = img.crop((54, 517, 201, 576))
     else:
-        # lgtm [py/unreachable-statement]
-        img = img.crop((61, 517, 208, 575))
+        img = img.crop((61, 517, 208, 575))   # lgtm [py/unreachable-statement]
 
     img.save("cropped.png")
     os.remove("screenshot.png")
